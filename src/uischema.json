@@ -1,55 +1,48 @@
 {
-  "type": "VerticalLayout",
-  "elements": [
-    {
-      "type": "Control",
-      "label": "Completed",
-      "scope": "#/properties/done"
-    },
-    {
-      "type": "Control",
-      "scope": "#/properties/name"
-    },
-    {
-      "type": "HorizontalLayout",
+  "type": "ListWithDetail",
+  "scope": "#/properties/movies",
+  "options": {
+    "detail": {
+      "type": "VerticalLayout",
       "elements": [
         {
-          "type": "Control",
-          "scope": "#/properties/due_date"
-        },
-        {
-          "type": "Control",
-          "scope": "#/properties/rating"
-        }
-      ]
-    },
-    {
-      "type": "HorizontalLayout",
-      "elements": [
-        {
-          "type": "Control",
-          "scope": "#/properties/recurrence"
-        },
-        {
-          "type": "Control",
-          "scope": "#/properties/recurrence_interval",
-          "rule": {
-            "effect": "HIDE",
-            "condition": {
-              "type": "LEAF",
-              "scope": "#/properties/recurrence",
-              "expectedValue": "Never"
+          "type": "HorizontalLayout",
+          "elements": [
+            {
+              "type": "Control",
+              "scope": "#/properties/id",
+              "label": "Movie id #"
+            },
+            {
+              "type": "Control",
+              "scope": "#/properties/name",
+              "label": "Movie Name"
             }
-          }
-        }
+
+          ]
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/sourcefile",
+          "label": "Movie File Source"
+        },            
+        {
+          "type": "Control",
+          "scope": "#/properties/questionPop",
+          "label": "Time to display Questions"
+        },            
+        {
+
+              "type": "VerticalLayout",
+              "elements": [
+                  {
+                    "type": "Control",
+                    "scope": "#/properties/questions"
+                  }
+              ]
+            }
+
       ]
-    },
-    {
-      "type": "Control",
-      "scope": "#/properties/description",
-      "options": {
-        "multi": true
-      }
     }
-  ]
+  }
 }

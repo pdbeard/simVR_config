@@ -42,11 +42,62 @@ const useStyles = makeStyles({
 });
 
 const initialData = {
-  name: 'Send email to Adrian',
-  description: 'Confirm if you have passed the subject\nHereby ...',
-  done: true,
-  recurrence: 'Daily',
-  rating: 3,
+  "movies": [
+    {
+      "id": 1,
+      "name": "Intro",
+      "sourcefile": "/movies/intro.mpg",
+      "questionPop": 60,
+      "questions": [
+        {
+          "question": "Check the Arm",
+          "gotoID": 2
+        },
+        {
+          "question": "Check the Leg",
+          "gotoID": 3
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Check Arm",
+      "sourcefile": "/movies/arm.mpg",
+      "questionPop": 30,
+      "questions": [
+        {
+          "question": "Finish examination",
+          "gotoID": 4
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Check Leg",
+      "sourcefile": "/movies/leg.mpg",
+      "questionPop": 45,
+      "questions": [
+        {
+          "question": "Leg is fine, check arm",
+          "gotoID": 2
+        },
+        {
+          "question": "Finish examination",
+          "gotoID": 5
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "End 1",
+      "sourcefile": "/movies/end1.mpg"
+    },
+    {
+      "id": 5,
+      "name": "End 2",
+      "sourcefile": "/movies/end2.mpg"
+    }
+  ]
 };
 
 const renderers = [
@@ -63,14 +114,12 @@ const App = () => {
   const clearData = () => {
     setData({});
   };
-
   return (
     <Fragment>
       <div className='App'>
         <header className='App-header'>
-          <img src={logo} className='App-logo' alt='logo' />
-          <h1 className='App-title'>Welcome to JSON Forms with React</h1>
-          <p className='App-intro'>More Forms. Less Code.</p>
+          {/* <img src={logo} className='App-logo' alt='logo' /> */}
+          <h1 className='App-title'>Sim VR Configuration tool</h1>
         </header>
       </div>
 
@@ -80,7 +129,7 @@ const App = () => {
         spacing={1}
         className={classes.container}
       >
-        <Grid item sm={6}>
+        <Grid item sm={4}>
           <Typography variant={'h4'} className={classes.title}>
             Bound data
           </Typography>
@@ -96,7 +145,7 @@ const App = () => {
             Clear data
           </Button>
         </Grid>
-        <Grid item sm={6}>
+        <Grid item sm={8}>
           <Typography variant={'h4'} className={classes.title}>
             Rendered form
           </Typography>

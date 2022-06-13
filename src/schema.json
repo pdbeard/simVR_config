@@ -1,32 +1,48 @@
 {
   "type": "object",
   "properties": {
-    "name": {
-      "type": "string",
-      "minLength": 1
-    },
-    "description": {
-      "title": "Long Description",
-      "type": "string"
-    },
-    "done": {
-      "type": "boolean"
-    },
-    "due_date": {
-      "type": "string",
-      "format": "date"
-    },
-    "rating": {
-      "type": "integer",
-      "maximum": 5
-    },
-    "recurrence": {
-      "type": "string",
-      "enum": ["Never", "Daily", "Weekly", "Monthly"]
-    },
-    "recurrence_interval": {
-      "type": "integer"
+    "movies": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "title": "Movies",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+
+          "id": {
+            "type": "number"
+          },
+          "sourcefile": {
+            "type": "string"
+          },
+          "questionPop": {
+            "type": "number",
+            "minimum": 0
+          },
+          
+            "questions":{
+              "type":"array",
+              "items": {
+                "type": "object",
+                "properties":{
+                  "question": {
+                    "type": "string"
+                  },
+                  "gotoID" :{
+                    "type":"number",
+                    "title":"Link to Movie (id #)"
+                  }
+                }
+              }
+            }
+          
+        },
+        "required": [
+          "name"
+        ]
+      }
     }
-  },
-  "required": ["name", "due_date"]
+  }
 }
