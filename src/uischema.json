@@ -28,7 +28,7 @@
         },            
         {
           "type": "Control",
-          "scope": "#/properties/questionPop",
+          "scope": "#/properties/displayPop",
           "label": "Time to display Questions"
         },            
         {
@@ -37,7 +37,7 @@
               "elements": [
                   {
                     "type": "Control",
-                    "scope": "#/properties/questions"
+                    "scope": "#/properties/display"
                   }
               ]
             }

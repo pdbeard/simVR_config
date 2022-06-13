@@ -17,17 +17,18 @@
           "sourcefile": {
             "type": "string"
           },
-          "questionPop": {
+          "displayPop": {
             "type": "number",
             "minimum": 0
           },
           
-            "questions":{
+            "display":{
+              "title":"Clickable Interactions",
               "type":"array",
               "items": {
                 "type": "object",
                 "properties":{
-                  "question": {
+                  "value": {
                     "type": "string"
                   },
                   "gotoID" :{

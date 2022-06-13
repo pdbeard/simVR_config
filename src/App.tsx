@@ -47,14 +47,14 @@ const initialData = {
       "id": 1,
       "name": "Intro",
       "sourcefile": "/movies/intro.mpg",
-      "questionPop": 60,
-      "questions": [
+      "displayPop": 60,
+      "display": [
         {
-          "question": "Check the Arm",
+          "value": "Check the Arm",
           "gotoID": 2
         },
         {
-          "question": "Check the Leg",
+          "value": "Check the Leg",
           "gotoID": 3
         }
       ]
@@ -63,10 +63,10 @@ const initialData = {
       "id": 2,
       "name": "Check Arm",
       "sourcefile": "/movies/arm.mpg",
-      "questionPop": 30,
-      "questions": [
+      "displayPop": 30,
+      "display": [
         {
-          "question": "Finish examination",
+          "value": "Finish examination",
           "gotoID": 4
         }
       ]
@@ -75,14 +75,14 @@ const initialData = {
       "id": 3,
       "name": "Check Leg",
       "sourcefile": "/movies/leg.mpg",
-      "questionPop": 45,
-      "questions": [
+      "displayPop": 45,
+      "display": [
         {
-          "question": "Leg is fine, check arm",
+          "value": "Leg is fine, check arm",
           "gotoID": 2
         },
         {
-          "question": "Finish examination",
+          "value": "Finish examination",
           "gotoID": 5
         }
       ]
@@ -114,6 +114,18 @@ const App = () => {
   const clearData = () => {
     setData({});
   };
+
+  function export2txt() {
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(new Blob([JSON.stringify(data, null, 2)], {
+      type: "text/plain"
+    }));
+    a.setAttribute("download", "data.txt");
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  }
+
   return (
     <Fragment>
       <div className='App'>
@@ -127,23 +139,33 @@ const App = () => {
         container
         justifyContent={'center'}
         spacing={1}
-        className={classes.container}
-      >
+        className={classes.container}>
         <Grid item sm={4}>
           <Typography variant={'h4'} className={classes.title}>
-            Bound data
+              Bound data
           </Typography>
-          <div className={classes.dataContent}>
-            <pre id='boundData'>{stringifiedData}</pre>
-          </div>
-          <Button
-            className={classes.resetButton}
-            onClick={clearData}
-            color='primary'
-            variant='contained'
-          >
-            Clear data
-          </Button>
+
+          <Grid container direction="row" justifyContent={'center'}spacing={2} >
+            <Grid item>
+              <Button
+                className={classes.resetButton}
+                onClick={clearData}
+                color='primary'
+                variant='contained'> Clear data
+              </Button>
+            </Grid>
+            <Grid item>
+              <Button
+                className={classes.resetButton}
+                onClick={export2txt}
+                color='primary'
+                variant='contained'> Download
+              </Button>
+            </Grid>
+          </Grid>
+            <div className={classes.dataContent}>
+              <pre id='boundData'>{stringifiedData}</pre>
+            </div>
         </Grid>
         <Grid item sm={8}>
           <Typography variant={'h4'} className={classes.title}>
